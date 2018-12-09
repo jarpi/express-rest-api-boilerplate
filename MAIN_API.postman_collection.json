@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "1cb3cdec-0d11-44a4-a1fe-4ac67bb267bb",
+		"name": "MAIN API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"{{TEST_EMAIL}}\",\n\t\"password\": \"{{TEST_PASSWORD}}\",\n\t\"password2\": \"{{TEST_PASSWORD}}\"\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/public/register",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"public",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eef7e87a-40ee-43b2-8a66-d6dd75e2ce34",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.globals.set(\"token\",pm.response.json().token );",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"{{TEST_EMAIL}}\",\n\t\"password\": \"{{TEST_PASSWORD}}\"\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/public/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"public",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
