@@ -79,12 +79,16 @@ const UserController = () => {
     }
   };
 
+  const hello = async (rq, rs) => {
+    return rs.status(200).json({msg:'Hello!'})
+  }
 
   return {
     register,
     login,
     validate,
     getAll,
+    hello
   };
 };
 
